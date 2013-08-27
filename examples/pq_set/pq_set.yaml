@@ -1,0 +1,140 @@
+﻿# main frame
+frame:
+  title: PQ test
+  ico: ca.ico
+
+# inputs  
+inputs:
+  # block headers
+  10001:
+    c: 3
+    color: red
+    r: 6
+    text: 'Dump to uart:'
+    type: label
+  10002:
+    c: 0
+    color: red
+    r: 6
+    text: 'System line:'
+    type: label
+  10003:
+    c: 0
+    color: red
+    r: 10
+    text: 'Threshold:'
+    type: label
+  10004:
+    c: 0
+    color: red
+    r: 17
+    text: 'PQ unit info:'
+    type: label
+    
+  # unit info
+  20001:
+    c: 0
+    r: 18
+    text: Unit IP
+    type: entry
+  20187:
+    c: 0
+    r: 20
+    text: Eprom Ver.
+    type: entry
+    state: DISABLED
+  20002:
+    c: 03
+    r: 20
+    text: 'Update Unit info'
+    type: button
+  
+  # en registers
+  6002:
+    c: 0
+    r: 8
+    text: Frequency
+    text1: 50Hz
+    text2: 60Hz
+    type: radio
+    val1: 50.0
+    val2: 60.0
+    reg: True
+  6003:
+    c: 0
+    r: 7
+    text: Udin (V)
+    type: entry
+    reg: True
+  6004:
+    c: 0
+    r: 11
+    text: U deep (%)
+    type: entry
+    reg: True
+  6005:
+    c: 0
+    r: 12
+    text: U deep histresis (%)
+    type: entry
+    reg: True
+  6006:
+    c: 0
+    r: 13
+    text: U swell (%)
+    type: entry
+    reg: True
+  6007:
+    c: 0
+    r: 14
+    text: U swell histresis (%)
+    type: entry
+    reg: True
+  6008:
+    c: 0
+    r: 15
+    text: U interuption (%)
+    type: entry
+    reg: True
+  6009:
+    c: 0
+    r: 16
+    text: U interuption histresis (%)
+    type: entry
+    reg: True
+  6013:
+    c: 3
+    r: 10
+    text: Dump Events data
+    type: checkbox
+    reg: True
+  6014:
+    c: 3
+    r: 7
+    text: Dump Frequency 10s
+    type: checkbox
+    reg: True
+  6016:
+    c: 3
+    r: 8
+    text: Dump Urms
+    type: checkbox
+    reg: True
+  6017:
+    c: 3
+    r: 10
+    text: Dump Uunbalenced
+    type: checkbox
+    reg: True
+  6019:
+    c: 3
+    r: 9
+    text: Dump Pst 10m
+    type: checkbox
+    reg: True
+  6020:
+    c: 3
+    r: 11
+    text: Dump Harmonics
+    type: checkbox
+    reg: True
