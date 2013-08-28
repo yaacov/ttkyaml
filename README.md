@@ -13,9 +13,11 @@ module to read and parse the file as a GUI description dict. if the pyYAML modul
 users can build a GUI description dict using other methods.
 
 Tkinter is Python's de-facto standard GUI (Graphical User Interface) package.
-http://http://wiki.python.org/moin/TkInter
+
+http://wiki.python.org/moin/TkInter
 
 YAML is a human-readable data serialization format.
+
 http://en.wikipedia.org/wiki/YAML
  
 
