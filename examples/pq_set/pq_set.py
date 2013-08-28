@@ -45,8 +45,8 @@ class PqSet(TtkYaml):
         TtkYaml.__init__(self)
         
         # file names
-        self.conf_filename = confpath + '/pq_set.conf'
-        self.gui_filename = basedir + '/pq_set.yaml'
+        self.conf_filename = os.path.join(confpath, '/pq_set.conf')
+        self.gui_filename = os.path.join(basedir, '/pq_set.yaml')
         
         # load configure file
         self.load_conf()
@@ -61,7 +61,7 @@ class PqSet(TtkYaml):
         # and the icon file in not in current path
         if 'ico' in self.gui['frame'].keys():
             frame = self.gui['frame']
-            full_icon_path = "%s/%s" % (basedir, frame['ico'])
+            full_icon_path = os.path.join(basedir, frame['ico'])
             self.root.iconbitmap(full_icon_path)
             
         # init the ip entry and the reload button
