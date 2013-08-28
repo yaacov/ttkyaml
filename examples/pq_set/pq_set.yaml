@@ -8,25 +8,25 @@ inputs:
   # block headers
   10001:
     c: 3
-    color: red
+    foreground: red
     r: 6
     text: 'Dump to uart:'
     type: label
   10002:
     c: 0
-    color: red
+    foreground: red
     r: 6
     text: 'System line:'
     type: label
   10003:
     c: 0
-    color: red
+    foreground: red
     r: 10
     text: 'Threshold:'
     type: label
   10004:
     c: 0
-    color: red
+    foreground: red
     r: 17
     text: 'PQ unit info:'
     type: label
@@ -54,11 +54,10 @@ inputs:
     c: 0
     r: 8
     text: Frequency
-    text1: 50Hz
-    text2: 60Hz
+    options:
+      50.0: 50Hz
+      60.0: 60Hz
     type: radio
-    val1: 50.0
-    val2: 60.0
     reg: True
   6003:
     c: 0

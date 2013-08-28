@@ -97,10 +97,13 @@ class TtkYaml:
         frame = self.gui['frame']
         
         # create main window
-        if 'ico' in frame.keys():
-            root.iconbitmap(default=frame['ico'])
         if 'title' in frame.keys():
             root.title(frame['title'])
+        if 'ico' in frame.keys():
+            try:
+                root.iconbitmap(default=frame['ico'])
+            except:
+                pass
         
         # set the main frame
         self.mainframe = ttk.Frame(root)
@@ -120,95 +123,98 @@ class TtkYaml:
         # TODO: create a separate function call for the creation 
         #       of each widget
         for reg, button in inputs.items():
+            
+            # set a var for this input
+            var = StringVar()
+            button['var'] = var
+            
             # checkbox
             # --------
-            if button['type'] == 'checkbox':
-                # this input has a var
-                var = StringVar()
-                button['var'] = var
-                
+            if button['type'] == 'checkbox':                
                 # create the widget
-                check = ttk.Checkbutton(parent, text=button['text'], 
-                    variable=button['var'],
+                _check = ttk.Checkbutton(parent, text=button['text'], 
+                    variable=var,
                     command=call_back,
                     onvalue='1.0', offvalue='0.0')
-                button['checkbox'] = check
-                check.grid(column=button['c'], row=button['r'], sticky=(W, E))
+                button['checkbox'] = _check
+                
+                _check.grid(column=button['c'], row=button['r'], sticky=(W, E))
             
             # radiobox
             # --------
-            elif button['type'] == 'radio':
-                # this input has a var
-                var = StringVar()
-                button['var'] = var
-                
+            elif button['type'] == 'radio':                
                 # create a label
-                label = ttk.Label(parent, text=button['text'])
-                label.grid(column=button['c'], row=button['r'], sticky=W)
+                _label = ttk.Label(parent, text=button['text'])
+                _label.grid(column=button['c'], row=button['r'], sticky=W)
                 
-                # create the widget                
-                r1 = ttk.Radiobutton(parent, 
-                    command=call_back, text=button['text1'], 
-                    variable=button['var'], value=button['val1'])
-                r2 = ttk.Radiobutton(parent, 
-                    command=call_back, text=button['text2'], 
-                    variable=button['var'], value=button['val2'])
-                r1.grid(column=(button['c'] + 1), row=button['r'], sticky=(W, E))
-                r2.grid(column=(button['c'] + 1), row=(button['r'] + 1), sticky=(W, E))
+                # FIXME: what to put in the on 'radio' value?
+                button['radio'] = _label
+                
+                # create the widgets
+                i = 0
+                for key, text in button['options'].items():
+                    _radio = ttk.Radiobutton(parent, 
+                        command=call_back, text=text, 
+                        variable=var, value=key)
+                    
+                    _radio.grid(column=(button['c'] + 1), row=(button['r'] + i), sticky=(W, E))
+                    i += 1
             
             # entry
             # -----
-            elif button['type'] == 'entry':
-                # this input has a var
-                var = StringVar()
-                button['var'] = var
-                
+            elif button['type'] == 'entry':                
                 # create a lable
-                label = ttk.Label(parent, text=button['text'])
-                label.grid(column=button['c'], row=button['r'], sticky=W)
+                _label = ttk.Label(parent, text=button['text'])
+                _label.grid(column=button['c'], row=button['r'], sticky=W)
                 
                 # create the widget
-                entry = ttk.Entry(parent, width=18,
-                    textvariable=button['var'])
-                button['entry'] = entry
+                _entry = ttk.Entry(parent, width=18,
+                    textvariable=var)
+                button['entry'] = _entry
                 
                 # check state
                 if 'state' in button.keys(): 
                     if button['state'] == 'DISABLED':
-                        entry['state'] = DISABLED
+                        _entry['state'] = DISABLED
                     else:
-                        entry['state'] = button['state']
+                        _entry['state'] = button['state']
                 
                 # bind change to call back function
-                entry.bind('<Return>', call_back)
+                _entry.bind('<Return>', call_back)
                 
-                entry.grid(column=(button['c'] + 1), row=button['r'], sticky=(W, E))
+                _entry.grid(column=(button['c'] + 1), row=button['r'], sticky=(W, E))
             
             # button
             # -----
             elif button['type'] == 'button':
                 # create the widget
-                mybutton = ttk.Button(parent, text=button['text'], command=call_back)
-                button['button'] = mybutton
+                _button = ttk.Button(parent, textvariable=var, command=call_back)
+                button['button'] = _button
+                
+                # set text
+                var.set(button['text'])
                 
                 # add to parent
-                mybutton.grid(column=button['c'], row=button['r'], sticky=W)
+                _button.grid(column=button['c'], row=button['r'], sticky=W)
             
             # label
             # -----
             elif button['type'] == 'label':
                 # create the widget
-                label = ttk.Label(parent, text=button['text'])
-                button['label'] = label
+                _label = ttk.Label(parent, textvariable=var)
+                button['label'] = _label
                 
                 # set style
-                if 'color' in button.keys():
-                    style = ttk.Style()
-                    style.configure('%s.TLabel' % button['color'], foreground=button['color'])
-                    label.configure(style='%s.TLabel' % button['color'])
+                if 'foreground' in button.keys():
+                    _style = ttk.Style()
+                    _style.configure('%s.TLabel' % button['foreground'], foreground=button['foreground'])
+                    _label.configure(style='%s.TLabel' % button['foreground'])
+                
+                # set text
+                var.set(button['text'])
                 
                 # add to parent
-                label.grid(column=button['c'], row=button['r'], sticky=W)
+                _label.grid(column=button['c'], row=button['r'], sticky=W)
             else:
                 pass
         

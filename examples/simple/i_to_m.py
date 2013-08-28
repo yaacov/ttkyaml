@@ -17,7 +17,7 @@ class ImpToMeter(TtkYaml):
                 'title': 'Feet to Meters',
             },
             'inputs':{
-                0:{'type': 'label',  'c': 0, 'r': 0, 'text': 'Convertor', 'color': 'blue'},
+                0:{'type': 'label',  'c': 0, 'r': 0, 'text': 'Convertor', 'foreground': 'blue'},
                 1:{'type': 'entry',  'c': 0, 'r': 1, 'text': 'feet'},
                 2:{'type': 'entry',  'c': 0, 'r': 2, 'text': 'meters', 'state': 'DISABLED'},
                 3:{'type': 'button', 'c': 2, 'r': 3, 'text': 'Calculate'},

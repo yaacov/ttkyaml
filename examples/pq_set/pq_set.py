@@ -18,11 +18,23 @@
 # Copyright (C) 2013 Yaacov Zamir <kobi.zamir@gmail.com>
 # Author: Yaacov Zamir (2013)
 
+import os
+import sys
+
 from Tkinter import *
 import yaml
 
 from tcp_modbus import TcpModbus
 from ttk_yaml import TtkYaml
+
+# get import paths
+# base dir when using pyinstaller is 
+if getattr(sys, 'frozen', None):
+    basedir = sys._MEIPASS
+    confpath = os.path.dirname(os.path.abspath(sys.argv[0]))
+else:
+    basedir = os.path.dirname(os.path.realpath(__file__))
+    confpath = os.path.dirname(os.path.abspath(__file__))
 
 # set a new ttk window and load gui
 class PqSet(TtkYaml):
@@ -33,8 +45,8 @@ class PqSet(TtkYaml):
         TtkYaml.__init__(self)
         
         # file names
-        self.conf_filename = 'pq_set.conf'
-        self.gui_filename = 'pq_set.yaml'
+        self.conf_filename = confpath + '/pq_set.conf'
+        self.gui_filename = basedir + '/pq_set.yaml'
         
         # load configure file
         self.load_conf()
@@ -45,6 +57,13 @@ class PqSet(TtkYaml):
         # extra gui settings
         self.mainframe.columnconfigure(2, weight=1, minsize=30)
         
+        # reset the icon, in case we are using pyinstaller
+        if 'ico' in self.gui['frame'].keys():
+            frame = self.gui['frame']
+            full_icon_path = "%s/%s" % (basedir, frame['ico'])
+            self.root.iconbitmap(full_icon_path)
+            self.root.title(frame['title'])
+            
         # init the ip entry and the reload button
         inputs = self.inputs
         inputs[20001]['var'].set(self.ip)
