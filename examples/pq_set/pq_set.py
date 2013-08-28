@@ -34,7 +34,7 @@ if getattr(sys, 'frozen', None):
     confpath = os.path.dirname(os.path.abspath(sys.argv[0]))
 else:
     basedir = os.path.dirname(os.path.realpath(__file__))
-    confpath = os.path.dirname(os.path.abspath(__file__))
+    confpath = basedir
 
 # set a new ttk window and load gui
 class PqSet(TtkYaml):
