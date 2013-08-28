@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from ttk_yaml import TtkYaml
+from ttkyaml.ttkyaml import TtkYaml
 
 class ImpToMeter(TtkYaml):
     ''' the ttk feet to meter example using ttkyaml

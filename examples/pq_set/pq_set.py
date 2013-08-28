@@ -25,7 +25,7 @@ from Tkinter import *
 import yaml
 
 from tcp_modbus import TcpModbus
-from ttk_yaml import TtkYaml
+from ttkyaml.ttkyaml import TtkYaml
 
 # base dir when using pyinstaller is 
 # configuration file path is always current dir
