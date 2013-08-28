@@ -45,8 +45,8 @@ class PqSet(TtkYaml):
         TtkYaml.__init__(self)
         
         # file names
-        self.conf_filename = os.path.join(confpath, '/pq_set.conf')
-        self.gui_filename = os.path.join(basedir, '/pq_set.yaml')
+        self.conf_filename = os.path.join(confpath, 'pq_set.conf')
+        self.gui_filename = os.path.join(basedir, 'pq_set.yaml')
         
         # load configure file
         self.load_conf()
