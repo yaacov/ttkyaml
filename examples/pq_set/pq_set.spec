@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 a = Analysis(['pq_set.py'],
-             pathex=['C:\\Users\\user.user-PC\\Documents\\GitHub\\ttkyaml\\examples\\pq_set'],
+             pathex=[],
              hiddenimports=[],
              hookspath=None)
 a.datas += [('ca.ico', 'ca.ico',  'DATA'), ('pq_set.yaml', 'pq_set.yaml',  'DATA'),]
