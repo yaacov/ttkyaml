@@ -1,4 +1,4 @@
-ttkyaml
+TtkYaml
 =======
 
 TtkYaml is a Python module for constructing ttk (Tkinter) user interfaces 
@@ -19,6 +19,15 @@ http://wiki.python.org/moin/TkInter
 YAML is a human-readable data serialization format.
 
 http://en.wikipedia.org/wiki/YAML
+
+
+Simple example
+--------------
+Example GUI build using TtkYaml
+
+![alt exampe on debian](https://raw.github.com/yaacov/ttkyaml/master/examples/simple/deb.png)
+
+![alt example on win6](https://raw.github.com/yaacov/ttkyaml/master/examples/simple/win8.png)
  
 
 
