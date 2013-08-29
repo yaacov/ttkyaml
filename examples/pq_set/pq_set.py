@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
 # This program is free software; you can redistribute it and/or modify
@@ -61,8 +61,11 @@ class PqSet(TtkYaml):
         frame = self.gui['frame']
         if 'ico' in frame.keys():
             full_icon_path = os.path.join(basedir, frame['ico'])
-            self.root.iconbitmap(full_icon_path)
-            
+            try:
+                self.root.iconbitmap(full_icon_path)
+            except:
+                pass
+        
         # init the ip entry and the reload button
         inputs = self.inputs
         inputs[20001]['var'].set(self.ip)
