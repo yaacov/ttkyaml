@@ -27,8 +27,7 @@ import yaml
 from tcp_modbus import TcpModbus
 from ttkyaml.ttkyaml import TtkYaml
 
-# base dir when using pyinstaller is 
-# configuration file path is always current dir
+# base dir when using pyinstaller is different
 if getattr(sys, 'frozen', None):
     basedir = sys._MEIPASS
     confpath = os.path.dirname(os.path.abspath(sys.argv[0]))
@@ -38,7 +37,7 @@ else:
 
 # set a new ttk window and load gui
 class PqSet(TtkYaml):
-    ''' red and write input registers from a pq unit
+    ''' read and write input registers from a pq unit
     '''
         
     def __init__(self):
@@ -59,8 +58,8 @@ class PqSet(TtkYaml):
         
         # reset the icon, in case we are using pyinstaller
         # and the icon file in not in current path
-        if 'ico' in self.gui['frame'].keys():
-            frame = self.gui['frame']
+        frame = self.gui['frame']
+        if 'ico' in frame.keys():
             full_icon_path = os.path.join(basedir, frame['ico'])
             self.root.iconbitmap(full_icon_path)
             
