@@ -169,6 +169,7 @@ inputs:
     text: Dump Harmonics
     type: checkbox
     reg: True
+<<<<<<< HEAD
   6023:
     c: 3
     r: 12
@@ -193,3 +194,5 @@ inputs:
     type: radio
     reg: True
  
+=======
+>>>>>>> 6fb7473efbd611edfd42159c45d71f156448822f
