@@ -155,9 +155,9 @@ class PqSet(TtkYaml):
         
         # read registers from unit
         try:
-            en_reg = com.read_registers(31, 6001 * 2 - 2, 20 * 2)
+            en_reg = com.read_registers(31, 6001 * 2 - 2, 30 * 2)
         except:
-            en_reg = ['',] * 20
+            en_reg = ['',] * 30
         
         # set the gui vars
         for i, val in enumerate(en_reg):

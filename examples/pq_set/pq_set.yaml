@@ -13,39 +13,51 @@ inputs:
     text: 'Dump to uart:'
     type: label
   10002:
+    c: 3
+    foreground: red
+    r: 14
+    text: 'Dump to uart (csv):'
+    type: label
+  10003:
     c: 0
     foreground: red
     r: 6
     text: 'System line:'
     type: label
-  10003:
+  10004:
     c: 0
     foreground: red
     r: 10
     text: 'Threshold:'
     type: label
-  10004:
+  10005:
     c: 0
     foreground: red
-    r: 17
+    r: 19
+    text: 'Mains signal:'
+    type: label
+  10006:
+    c: 0
+    foreground: red
+    r: 23
     text: 'PQ unit info:'
     type: label
-    
+  
   # unit info
   20001:
     c: 0
-    r: 18
+    r: 24
     text: Unit IP
     type: entry
   20187:
     c: 0
-    r: 20
+    r: 25
     text: Eprom Ver.
     type: entry
     state: DISABLED
   20002:
     c: 03
-    r: 20
+    r: 25
     text: 'Update Unit info'
     type: button
   
@@ -101,6 +113,26 @@ inputs:
     text: U interuption histresis (%)
     type: entry
     reg: True
+   
+  6010:
+    c: 0
+    r: 20
+    text: 'Mains IHG (0 is None)'
+    type: entry
+    reg: True
+  6011:
+    c: 0
+    r: 21
+    text: 'Triger value (V)'
+    type: entry
+    reg: True
+  6012:
+    c: 0
+    r: 22
+    text: 'Histeresis (V)'
+    type: entry
+    reg: True
+  
   6013:
     c: 3
     r: 10
@@ -137,3 +169,27 @@ inputs:
     text: Dump Harmonics
     type: checkbox
     reg: True
+  6023:
+    c: 3
+    r: 12
+    text: Dump Harmonics Ag.
+    type: checkbox
+    reg: True
+  6022:
+    c: 3
+    r: 13
+    text: Dump Debug
+    type: checkbox
+    reg: True
+  6024:
+    c: 3
+    r: 15
+    text: Dump 20m data
+    options:
+      0.0: 'None              '
+      1.0: chanell 1
+      2.0: chanell 2
+      3.0: chanell 3
+    type: radio
+    reg: True
+ 
