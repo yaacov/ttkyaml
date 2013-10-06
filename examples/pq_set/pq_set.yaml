@@ -15,7 +15,7 @@ inputs:
   10002:
     c: 3
     foreground: red
-    r: 14
+    r: 26
     text: 'Dump to uart (csv):'
     type: label
   10003:
@@ -33,34 +33,46 @@ inputs:
   10005:
     c: 0
     foreground: red
-    r: 19
+    r: 26
     text: 'Mains signal:'
     type: label
   10006:
     c: 0
     foreground: red
-    r: 23
+    r: 33
     text: 'PQ unit info:'
     type: label
   
   # unit info
   20001:
     c: 0
-    r: 24
+    r: 34
     text: Unit IP
     type: entry
   20187:
     c: 0
-    r: 25
+    r: 35
     text: Eprom Ver.
     type: entry
     state: DISABLED
   20002:
     c: 03
-    r: 25
+    r: 35
     text: 'Update Unit info'
     type: button
-  
+  6018:
+    c: 3
+    r: 34
+    text: Run EN analisis
+    type: checkbox
+    reg: True
+  6019:
+    c: 4
+    r: 34
+    text: Run harmonic analisis
+    type: checkbox
+    reg: True
+    
   # en registers
   6002:
     c: 0
@@ -113,78 +125,119 @@ inputs:
     text: U interuption histresis (%)
     type: entry
     reg: True
-   
+  6014:
+    c: 0
+    r: 17
+    text: U transient (%)
+    type: entry
+    reg: True
+  6015:
+    c: 0
+    r: 18
+    text: U transient histresis (%)
+    type: entry
+    reg: True
+  6016:
+    c: 0
+    r: 19
+    text: U rapid voltage cahnge (% per wave)
+    type: entry
+    reg: True
+    
   6010:
     c: 0
-    r: 20
+    r: 27
     text: 'Mains IHG (0 is None)'
     type: entry
     reg: True
   6011:
     c: 0
-    r: 21
+    r: 28
     text: 'Triger value (V)'
     type: entry
     reg: True
   6012:
     c: 0
-    r: 22
+    r: 29
     text: 'Histeresis (V)'
     type: entry
     reg: True
-  
   6013:
-    c: 3
-    r: 10
-    text: Dump Events data
-    type: checkbox
+    c: 0
+    r: 30
+    text: Chanell
+    options:
+      0.0: chanell 1
+      1.0: chanell 2
+      2.0: chanell 3
+    type: radio
     reg: True
-  6014:
+  
+  6072:
     c: 3
     r: 7
     text: Dump Frequency 10s
     type: checkbox
     reg: True
-  6016:
+  6074:
     c: 3
     r: 8
     text: Dump Urms
     type: checkbox
     reg: True
-  6017:
+  6075:
     c: 3
     r: 10
     text: Dump Uunbalenced
     type: checkbox
     reg: True
-  6019:
+  6077:
     c: 3
     r: 9
     text: Dump Pst 10m
     type: checkbox
     reg: True
-  6020:
+  6078:
     c: 3
     r: 11
     text: Dump Harmonics
     type: checkbox
     reg: True
-  6023:
+  6079:
     c: 3
     r: 12
     text: Dump Harmonics Ag.
     type: checkbox
     reg: True
-  6022:
+  6071:
     c: 3
     r: 13
+    text: Dump events
+    type: checkbox
+    reg: True
+  6076:
+    c: 3
+    r: 13
+    text: Dump under/over voltage
+    type: checkbox
+    reg: True
+  
+  6085:
+    c: 3
+    r: 31
+    text: Reset COM
+    type: checkbox
+    reg: True
+  6080:
+    c: 3
+    r: 32
     text: Dump Debug
     type: checkbox
     reg: True
     
-  6024:
+  6082:
     c: 3
-    r: 15
+    r: 27
     text: Dump 20m data
     options:
       0.0: 'None              '

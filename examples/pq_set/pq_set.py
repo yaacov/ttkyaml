@@ -47,6 +47,9 @@ class PqSet(TtkYaml):
         self.conf_filename = os.path.join(confpath, 'pq_set.conf')
         self.gui_filename = os.path.join(basedir, 'pq_set.yaml')
         
+        # chache
+        self.cahce = {}
+        
         # load configure file
         self.load_conf()
         
@@ -137,12 +140,63 @@ class PqSet(TtkYaml):
         # for each gui var, get value and send it to unit
         for reg, button in buttons.items():
             if 'reg' in button.keys():
-                val = float(button['var'].get())
                 try:
-                    com.write_registers(31, reg * 2 - 2, val)
+                    val = float(button['var'].get())
                 except:
-                    self.set_ip(self.ip)
+                    val = 0
+                    print "Err", button['var']
                 
+                reg_num = reg * 2 - 2
+                
+                # if value changed, send it to unit
+                if self.cahce.get(reg_num, None) != val:
+                    try:
+                        # send to unit
+                        com.write_registers(31, reg_num, val)
+                        print "send:", reg_num, reg, val
+                        
+                        # update chache
+                        self.cahce[reg_num] = val
+                    except:
+                        self.set_ip(self.ip)
+    
+    def read_registers(self):
+        ''' read registers in a sequence
+        '''
+        com = self.com
+        en_reg = []
+        
+        # read 40 registers each time (20 floats)
+        # reading too many registers in one time is error prone
+        try:
+            en_reg += com.read_registers(31, 6001 * 2 - 2, 20 * 2)
+        except Exception as e:
+            print e
+            en_reg += ['',] * 20
+        try:
+            en_reg += com.read_registers(31, 6021 * 2 - 2, 20 * 2)
+        except Exception as e:
+            print e
+            en_reg += ['',] * 20
+        try:
+            en_reg += com.read_registers(31, 6041 * 2 - 2, 20 * 2)
+        except Exception as e:
+            print e
+            en_reg += ['',] * 20
+        try:
+            en_reg += com.read_registers(31, 6061 * 2 - 2, 20 * 2)
+        except Exception as e:
+            print e
+            en_reg += ['',] * 20
+        try:
+            en_reg += com.read_registers(31, 6081 * 2 - 2, 20 * 2)
+        except Exception as e:
+            print e
+            en_reg += ['',] * 20
+        print en_reg
+        
+        return en_reg
+        
     def get_reg(self):
         ''' call unit and ask for en registers
         '''
@@ -157,16 +211,20 @@ class PqSet(TtkYaml):
             inputs[20187]['var'].set('')
         
         # read registers from unit
-        try:
-            en_reg = com.read_registers(31, 6001 * 2 - 2, 30 * 2)
-        except:
-            en_reg = ['',] * 30
+        en_reg = self.read_registers()
         
         # set the gui vars
         for i, val in enumerate(en_reg):
+            # use only two digits after decimal point
+            val = float(int(val * 100.0)) / 100.0
+            
             reg = i + 6001
+            reg_num = reg * 2 - 2
             if reg in inputs.keys():
                 inputs[reg]['var'].set(val)
+                
+                # update chache
+                self.cahce[reg_num] = val
 
 def main():
     pq_set = PqSet()
