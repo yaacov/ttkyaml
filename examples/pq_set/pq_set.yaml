@@ -209,19 +209,19 @@ inputs:
     text: Dump Harmonics Ag.
     type: checkbox
     reg: True
-  6071:
-    c: 3
-    r: 13
-    text: Dump events
-    type: checkbox
-    reg: True
   6076:
     c: 3
     r: 13
     text: Dump under/over voltage
     type: checkbox
     reg: True
-  
+  6071:
+    c: 3
+    r: 14
+    text: Dump events
+    type: checkbox
+    reg: True
+    
   6085:
     c: 3
     r: 31
