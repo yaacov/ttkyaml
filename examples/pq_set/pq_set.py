@@ -168,32 +168,12 @@ class PqSet(TtkYaml):
         
         # read 40 registers each time (20 floats)
         # reading too many registers in one time is error prone
-        try:
-            en_reg += com.read_registers(31, 6001 * 2 - 2, 20 * 2)
-        except Exception as e:
-            print e
-            en_reg += ['',] * 20
-        try:
-            en_reg += com.read_registers(31, 6021 * 2 - 2, 20 * 2)
-        except Exception as e:
-            print e
-            en_reg += ['',] * 20
-        try:
-            en_reg += com.read_registers(31, 6041 * 2 - 2, 20 * 2)
-        except Exception as e:
-            print e
-            en_reg += ['',] * 20
-        try:
-            en_reg += com.read_registers(31, 6061 * 2 - 2, 20 * 2)
-        except Exception as e:
-            print e
-            en_reg += ['',] * 20
-        try:
-            en_reg += com.read_registers(31, 6081 * 2 - 2, 20 * 2)
-        except Exception as e:
-            print e
-            en_reg += ['',] * 20
-        print en_reg
+        for addr in [6001, 6021, 6041, 6061, 6081]:
+            try:
+                en_reg += com.read_registers(31, addr * 2 - 2, 40)
+            except Exception as e:
+                print e
+                en_reg += [0,] * 20
         
         return en_reg
         
