@@ -73,9 +73,11 @@ class TcpModbus():
         '''
         command = 0x10
         soc = self.soc
-        
+        count = 1
+        value_array = [value, ]
         # sent one float, use two registers
-        message = pack(">3H2B2HBf", 1, 0, 11, unit, command, addr, 2, 4, value)
+        message = pack(">3H2B2HB%df" % count, 1, 0, 7 + 4 * count, 
+            unit, command, addr, 2 * count, 4 * count, *value_array)
         soc.send(message)
         replay = soc.recv(1024)
 
