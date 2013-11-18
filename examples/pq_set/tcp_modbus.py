@@ -75,6 +75,7 @@ class TcpModbus():
         soc = self.soc
         count = 1
         value_array = [value, ]
+        
         # sent one float, use two registers
         message = pack(">3H2B2HB%df" % count, 1, 0, 7 + 4 * count, 
             unit, command, addr, 2 * count, 4 * count, *value_array)
